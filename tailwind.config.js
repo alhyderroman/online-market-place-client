@@ -5,11 +5,7 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      fontFamily:{
-        lato:"'Lato', sans-serif",
-      }
-    },
+    extend: {},
   },
   plugins: [
     require('daisyui'),

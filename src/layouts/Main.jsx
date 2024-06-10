@@ -1,24 +1,19 @@
-import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-
+import { Outlet } from 'react-router-dom'
+import Footer from '../components/shared/Footer/Footer'
+import Navbar from '../components/shared/Navbar/Navbar'
 
 const Main = () => {
-    return (
-        <div>
-            {/* navbar */}
-         <Navbar></Navbar>
 
-            {/* Outlet */}
-            <div className="min-h-[calc(100vh-306px)]">
-            <Outlet></Outlet>
-            </div>
+  return (
+    <div>
+      <Navbar />
+      <div className='pt-28 min-h-[calc(100vh-68px)]'>
+      <Outlet />
+      </div>
+      
+      <Footer/>
+    </div>
+  )
+}
 
-            {/* Footer */}
-            <Footer></Footer>
-            
-        </div>
-    );
-};
-
-export default Main;``
+export default Main

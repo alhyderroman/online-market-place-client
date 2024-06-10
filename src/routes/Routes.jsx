@@ -1,70 +1,99 @@
-import { createBrowserRouter } from "react-router-dom";
+import {createBrowserRouter} from "react-router-dom";
 import Main from "../layouts/Main";
-import Home from "../pages/Home";
-import Login from "../pages/Authentication/Login";
-import Register from "../pages/Authentication/Register";
-import JobDetails from "../pages/JobDetails";
-import AddJob from "../pages/AddJob";
 import ErrorPage from "../pages/ErrorPage";
-import MyPostedJobs from "../pages/MyPostedJobs";
-import UpdateJob from "../pages/UpdateJob";
-import PrivateRoute from "./PrivateRoute";
-import MyBids from "../pages/MyBids";
-import BidRequests from "../pages/BidRequests";
-import AllJobs from "../pages/AllJobs";
+import Login from "../pages/Login/Login";
+import SignUp from "../pages/SignUp/SignUp";
+import Home from "../pages/Home/Home";
+import ClassDetails from "../pages/ClassDetails/ClassDetails";
+import DashboardLayout from "../layouts/DashboardLayout";
+import MyBookings from "../pages/Dashboard/Guest/MyBookings";
+import MyEnrollClassDetails from "../pages/ClassDetails/MyEnrollClassDetails";
+import AddClass from "../pages/Dashboard/Host/AddClass";
+import MyListings from "../pages/Dashboard/Host/MyListings";
+
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Main></Main>,
-      errorElement:<ErrorPage></ErrorPage>,
-      children:[{
-        index:true,
-        element:<Home></Home>,
-        // loader:()=>fetch(`${import.meta.env.VITE_API_URL}/jobs`),
-        // loader:()=>fetch('http://localhost:9000/jobs')
+  {
+    path: '/',
+    element: <Main />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path:'/',
+        element:<Home></Home>
       },
       {
-        path:'/login',
-        element:<Login></Login>
+        path: '/class/:id',
+        element: <ClassDetails/> 
       },
-      {
-        path:'/registration',
-        element:<Register></Register>
-      },
-      {
-        path:'/jobDetail/:id',
-        element:<PrivateRoute><JobDetails></JobDetails></PrivateRoute>,
-        loader:({params})=>fetch(`${import.meta.env.VITE_API_URL}/jobDetail/${params.id}`),
-      },
-      {
-        path:'/update/:id',
-        element:<PrivateRoute><UpdateJob></UpdateJob></PrivateRoute>,
-        loader:({params})=>fetch(`${import.meta.env.VITE_API_URL}/job/${params.id}`),
-      },
-      {
-        path:'/add-job',
-        element:<PrivateRoute><AddJob></AddJob></PrivateRoute>
-      },
-      {
-        path:'/myPostedJobs',
-        element:<PrivateRoute><MyPostedJobs></MyPostedJobs></PrivateRoute>
-      },
-      {
-        path:'/myBids',
-        element:<PrivateRoute><MyBids></MyBids></PrivateRoute>
-      },
-      {
-        path:'/bidRequests',
-        element:<PrivateRoute><BidRequests></BidRequests></PrivateRoute>
-      },
-      {
-        path:'/jobs',
-        element:<AllJobs></AllJobs>
-      }
-     
     ]
-    },
-  ]);
+  },
+  { path: '/login', element: <Login/> },
+  { path: '/signup', element: <SignUp /> },
+  {
+    path: '/dashboard',
+    element: ( <DashboardLayout /> ),
+    children: [
+      // {
+      //   index: true,
+      //   element: (
+      //     <PrivateRoute>
+      //       <Statistics />
+      //     </PrivateRoute>
+      //   ),
+      // },
+      {
+        path: 'add-class',
+        element: <AddClass />  
+      },
+      // {
+      //   path:'teacher-request',
+      //   element:<TeacherRequest></TeacherRequest>
+      // },
+      {
+        path: 'my-listings',
+        element: 
+              <MyListings />
+           
+      },
+      // {
+      //   path: 'manage-users',
+      //   element: (
+      //     <PrivateRoute>
+      //       <AdminRoute>
+      //         <ManageUsers />
+      //       </AdminRoute>
+      //     </PrivateRoute>
+      //   ),
+      // },
+      {
+        path: 'my-bookings',
+        element: <MyBookings />
+      },
+      {
+        path: 'my-enroll-class-details/:id',
+        element:<MyEnrollClassDetails/>
+      }
+      // {
+      //   path: 'manage-bookings',
+      //   element: (
+      //     <PrivateRoute>
+      //       <HostRoute>
+      //         <ManageBookings />
+      //       </HostRoute>
+      //     </PrivateRoute>
+      //   ),
+      // },
+      // {
+      //   path: 'profile',
+      //   element: (
+      //     <PrivateRoute>
+      //       <Profile />
+      //     </PrivateRoute>
+      //   ),
+      // },
+    ],
+  },
+]);
 
-  export default router;
+export default router;

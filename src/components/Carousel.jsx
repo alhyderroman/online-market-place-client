@@ -7,7 +7,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 
-
 // import required modules
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import Slide from './Slide';
@@ -36,13 +35,13 @@ export default function Carousel() {
         className="mySwiper"
       >
         <SwiperSlide>
-            <Slide image={bgimg1} text='Get Your Web Development Projects Done in minutes'></Slide>
+            <Slide image={bgimg1} text='Indulge in culinary excellence at our restaurant.'></Slide>
         </SwiperSlide>
         <SwiperSlide>
-            <Slide image={bgimg2} text='Get Your Graphic Design Projects Done in minutes'></Slide>
+            <Slide image={bgimg2} text='Every dish tells a story of flavor and passion.'></Slide>
         </SwiperSlide>
         <SwiperSlide>
-            <Slide image={bgimg3} text='Start Your Digital Marketing Campaigns up n running'></Slide>
+            <Slide image={bgimg3} text='Join us for an unforgettable dining experience.'></Slide>
         </SwiperSlide>
      
         
